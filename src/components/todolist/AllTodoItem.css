@@ -1,0 +1,11 @@
+.item-list-todos {
+	margin: 0;
+}
+
+.item-list-todos div {
+	padding: 2px 0;
+}
+
+.item-done {
+	text-decoration:line-through
+}

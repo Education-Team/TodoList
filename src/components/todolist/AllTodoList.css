@@ -1,0 +1,35 @@
+ul.todo-list {
+	padding: 0.5em;
+	max-width: 70em;
+	margin: 0 auto;
+	overflow: hidden;
+}
+li.todo-list-item {
+	width: calc(32% + 3px);
+	height: 300px;
+	padding: 0.5em;
+	display: block;
+	float: left;
+	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.04);
+	background: white;
+	border-radius: 5px;
+	margin: 5px;
+	overflow: auto;
+	cursor:pointer;
+}
+
+.item-data {
+	display: block;
+	width: auto;
+	padding: 0;
+	vertical-align: middle;
+	padding: 0.5em 0;
+}
+.item-data-head {
+	margin-bottom: 15px;
+}
+
+.item-data-head .head-date {
+	margin: 0;
+	text-align: center;
+}
