@@ -20,6 +20,8 @@ sketch
 bundle.js
 bundle.js.map
 
+yarn.lock
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
