@@ -17,6 +17,9 @@ psd
 thumb
 sketch
 
+bundle.js
+bundle.js.map
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
