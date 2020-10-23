@@ -3,8 +3,13 @@ import TodoListTemplate from './TodoListTemplate';
 import Form from './Form';
 import TodoItemList from './TodoItemList';
 
-
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     title: null
+  //   }
+  // }
 
   id = 3 // 이미 0,1,2 가 존재하므로 3으로 설정
 
@@ -68,6 +73,12 @@ class App extends Component {
     this.setState({
       todos: todos.filter(todo => todo.id !== id)
     });
+  }
+
+  componentDidMount() {
+    fetch('http://localhost:3002/api')
+      .then(res => res.json())
+      .then(data => this.setState({ title: data.title }));
   }
 
   render() {
