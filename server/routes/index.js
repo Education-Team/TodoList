@@ -74,18 +74,38 @@ router.get('/', (req, res) => {
     res.send({ title: 'hello react!' });
 });
 
-// 전체 투두리스트 데이터 가져오기(DB 적용할 예정)
+// 전체 투두리스트 데이터 가져오기(DB 적용할 예정) - R
 router.get('/todos', (req, res) => {
-    console.log('http://localhost:3002/api/todos');
+    console.log('GET http://localhost:3002/api/todos');
 	res.json(data);
 });
 
-// 특정 투두리스트 데이터 가져오기(DB 적용할 예정)
+// 특정 투두리스트 데이터 가져오기(DB 적용할 예정) - R
 router.get('/todos/:id', (req, res) => {
-    console.log(`http://localhost:3002/api/todos/${req.params.id}`);
+    console.log(`GET http://localhost:3002/api/todos/${req.params.id}`);
 	const onedata = data.find(_item=>_item.keyid == req.params.id);
 	res.json(onedata);
 });
+
+// 투두리스트 추가(DB 적용할 예정) - C
+router.post('/todos', (req, res) => {
+    console.log('POST http://localhost:3002/api/todos');
+	console.log(req.body);
+	res.json({result : "ok"});
+});
+
+// 투두리스트 수정(DB 적용할 예정) - U
+router.put('/todos/:id', (req, res) => {
+	console.log('PUT http://localhost:3002/api/todos');
+	console.log(req.body);
+});
+
+// 투두리스트 삭제(DB 적용할 예정) - D
+router.delete('todos/:id', (req, res) => {
+	console.log(`DELETE http://localhost:3002/api/todos/${req.params.id}`);
+	console.log(req.body);
+})
+
 
 
 module.exports = router;
