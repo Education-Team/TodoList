@@ -98,13 +98,15 @@ router.post('/todos', (req, res) => {
 router.put('/todos/:id', (req, res) => {
 	console.log('PUT http://localhost:3002/api/todos');
 	console.log(req.body);
+	res.json({result : "ok"});
 });
 
 // 투두리스트 삭제(DB 적용할 예정) - D
-router.delete('todos/:id', (req, res) => {
+router.delete('/todos/:id', (req, res) => {
 	console.log(`DELETE http://localhost:3002/api/todos/${req.params.id}`);
 	console.log(req.body);
-})
+	res.json({result : "ok"});
+});
 
 
 
