@@ -16,7 +16,13 @@ const TodoCreate = () => {
 	const onSubmit = async (e) => {
 		e.preventDefault(); // 새로고침 방지
 		const number = nextId.current + 1;
-		const _data = await createOneTodo(keyid, {number});
+		const _data = await createOneTodo(keyid, {
+			todo: {
+				id: number, // 넣은 후 더하기
+				text: inputValue,
+				done: false,
+			},
+		});
 		dispatch({
 			type : 'CREATE',
 			todo : {
