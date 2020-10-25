@@ -96,7 +96,7 @@ router.post('/todos', (req, res) => {
 
 // 투두리스트 수정(DB 적용할 예정) - U
 router.put('/todos/:id', (req, res) => {
-	console.log('PUT http://localhost:3002/api/todos');
+	console.log(`PUT http://localhost:3002/api/todos/${req.params.id}`);
 	console.log(req.body);
 	res.json({result : "ok"});
 });
@@ -104,7 +104,6 @@ router.put('/todos/:id', (req, res) => {
 // 투두리스트 삭제(DB 적용할 예정) - D
 router.delete('/todos/:id', (req, res) => {
 	console.log(`DELETE http://localhost:3002/api/todos/${req.params.id}`);
-	console.log(req.body);
 	res.json({result : "ok"});
 });
 

@@ -1,6 +1,7 @@
 import React, {useContext, useState} from 'react';
 import './TodoCreate.css';
-import {TodoNextIdContext, TodoDispatchContext} from './TodoCardContext';
+import {TodoNextIdContext, TodoStateContext, TodoDispatchContext} from './TodoCardContext';
+import {createOneTodo} from '../api';
 
 
 const TodoCreate = () => {
@@ -8,19 +9,23 @@ const TodoCreate = () => {
 	const [open, setOpen] = useState(false);
 	const [inputValue, setInputValue] = useState('');
 	const nextId = useContext(TodoNextIdContext);
+	const {keyid} = useContext(TodoStateContext);
 	const dispatch = useContext(TodoDispatchContext);
 	
 	const onChange = (e) => setInputValue(event.target.value)
-	const onSubmit = (e) => {
+	const onSubmit = async (e) => {
 		e.preventDefault(); // 새로고침 방지
+		const number = nextId.current + 1;
+		const _data = await createOneTodo(keyid, {number});
 		dispatch({
 			type : 'CREATE',
 			todo : {
-				id: nextId.current++,		// 넣은 후 더하기
+				id: number,		// 넣은 후 더하기
 				text: inputValue,
 				done: false,
 			}
 		});
+		nextId.current++;
 		setInputValue('');
 		setOpen(false);
 	}

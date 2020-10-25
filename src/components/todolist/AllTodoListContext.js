@@ -40,7 +40,10 @@ const AllTodoViewOffContext = createContext();
 
 function TodoListProvider({ children, onViewOffEvent }) {
 	const [listitem, dispatch] = useReducer(todoListReducer, initialTodoListItems);
-	const todoViewOff = () => { onViewOffEvent(null); };	// AllTodoListTemplate의 자세히보기(TodoTemplate)컴포넌트를 없애게하는 이벤트
+	const todoViewOff = () => { 
+		initfetchTodos();
+		onViewOffEvent(null); 
+	};	// AllTodoListTemplate의 자세히보기(TodoTemplate)컴포넌트를 없애게하는 이벤트
 	
 	const initfetchTodos = async () => {
 		try {

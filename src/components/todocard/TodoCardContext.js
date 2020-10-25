@@ -50,14 +50,18 @@ const TodoNextIdContext = createContext();
 // provider 전용 컴포넌트 함수
 function TodoProvider({children, viewkeyid}) {	
 	const [state, dispatch] = useReducer(todoReducer, initialTodoItems);
-	const nextId = useRef(4);		// 이거 동적으로 구현해야됨
-
+	const nextId = useRef(0);		// 그 다음 todo리스트 추가할 id값
 	
 	useEffect(() => {
 		(async () => {
 			try {
 				const _data = await getTodo(viewkeyid);
 				dispatch({ type: 'INIT', data : _data });
+				// todos중에 제일큰 id값 찾기
+				const refKeyNumber = _data.todos.reduce((accObject, currentObject) => {
+					return accObject.id > currentObject.id ? accObject.id : currentObject.id;
+				},0);
+				nextId.current = refKeyNumber;	// 제일 큰 id 번호
 			} catch (err) {
 				console.log('에러발생');
 				console.log(err);
