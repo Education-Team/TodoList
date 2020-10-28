@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const host = "https://gittodoproject-server.run.goorm.io"
+// const host = "https://gittodoproject-server.run.goorm.io"
+const host = "http://localhost:3002"
 
 // 전체 투두 리스트 데이터 불러오기
 export async function getTodos() {
 	const response = await axios.get(host + "/api/todos");
 	return response.data;
 }
-
 
 // 특정 투투 데이터 불러오기
 export async function getTodo(id) {
@@ -19,7 +19,7 @@ export async function getTodo(id) {
 export async function createOneTodo(id, data = {}) {
 	const response = await axios.put(`${host}/api/todos/${id}`, {
 		type: 'C',
-		data : { ...data }
+		data: { ...data }
 	});
 	return response.data;
 }
@@ -28,7 +28,7 @@ export async function createOneTodo(id, data = {}) {
 export async function deleteOneTodo(id, data = {}) {
 	const response = await axios.put(`${host}/api/todos/${id}`, {
 		type: 'D',
-		data : { ...data }
+		data: { ...data }
 	});
 	return response.data;
 }
@@ -37,7 +37,7 @@ export async function deleteOneTodo(id, data = {}) {
 export async function toggleOneTodo(id, data = {}) {
 	const response = await axios.put(`${host}/api/todos/${id}`, {
 		type: 'T',
-		data : { ...data }
+		data: { ...data }
 	});
 	return response.data;
 }
