@@ -1,15 +1,23 @@
 const ApiModel = require('../model/ApiModel');
+const JsonUtils = require('../utils/JsonUtils');
 
 // SELECT
 async function select() {
-	let data = await ApiModel.selectItem();
-	return data.Items;
+	let {Items} = await ApiModel.selectItem();
+	// 배열형식의 객체 -> 배열로 변환하기(하나씩 반복)
+	const convertArray = Items.map((_item) => {
+		_item.todos = JsonUtils.ObjectToArray(_item.todos);
+		return _item;
+	});
+	return convertArray;
 }
 
 // SELECT ONE
 async function selectOne(key) {
-	let data = await ApiModel.selectOneItem(key);
-	return data.Item;
+	let {Item} = await ApiModel.selectOneItem(key);
+	// 배열형식의 객체 -> 배열로 변환하기
+	Item.todos = JsonUtils.ObjectToArray(Item.todos);
+	return Item;
 }
 
 // SELECT ONE
@@ -20,6 +28,12 @@ async function insert() {
 
 // SELECT UPDATE
 async function update(params, reqData) {
+	// 일반 객체 형식을 배열 객체표현식으로 변경
+	if(reqData.type === 'C') {
+		reqData.data.todo = {
+			[reqData.data.todo.id] : { ...reqData.data.todo }
+		}
+	}
 	let data = await ApiModel.updateItem(params, reqData);
 	return data;
 }

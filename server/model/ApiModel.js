@@ -114,12 +114,13 @@ async function updateItem(params, reqData) {
 				Key: {
 					keyid: Number(params.id)
 				},
-				UpdateExpression: "set #attrName = list_append(#attrName, :attrValue)",
+				// UpdateExpression: "set #attrName = list_append(#attrName, :attrValue)",
+				 UpdateExpression: "set #attrName = :attrValue",
 				ExpressionAttributeNames : {
 					"#attrName" : "todos"
 				  },
 				ExpressionAttributeValues: {
-					":attrValue":[reqData.data.todo]
+					":attrValue": reqData.data.todo
 				},
 				ReturnValues: "UPDATED_NEW"
 			};

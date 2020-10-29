@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// const host = "https://gittodoproject-server.run.goorm.io"
-const host = "http://localhost:3002"
+const host = "https://gittodoproject-server.run.goorm.io"
+// const host = "http://localhost:3002"
 
 // 전체 투두 리스트 데이터 불러오기
 export async function getTodos() {
