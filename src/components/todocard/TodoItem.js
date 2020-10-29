@@ -16,7 +16,7 @@ const TodoItem = ({keyid, id, text, done}) => {
 	
 	const dispatch = useContext(TodoDispatchContext);
 	const onToggle = async () => {
-		const _data = await toggleOneTodo(keyid, {id});
+		const _data = await toggleOneTodo(keyid, {id, done : !done});
 		dispatch({type : 'TOGGLE', id});
 	}
 	const onRemove = async () => {

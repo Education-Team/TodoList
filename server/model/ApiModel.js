@@ -61,13 +61,11 @@ async function updateItem(params, reqData) {
 				Key: {
 					keyid: Number(params.id)
 				},
-				UpdateExpression: "set #attrName = :attrValue",
+				UpdateExpression: "remove todos.#attrKeyId",
+				ConditionExpression: "attribute_exists(todos.#attrKeyId)",
 				ExpressionAttributeNames : {
-					"#attrName" : "todos.done"
-				  },
-				ExpressionAttributeValues: {
-					":attrValue": "false"
-				}
+					"#attrKeyId" : reqData.data.id
+				 }
 			};
 
 			try {
@@ -86,16 +84,15 @@ async function updateItem(params, reqData) {
 				Key: {
 					keyid: Number(params.id)
 				},
-				UpdateExpression: "set #attrName1 = :attrValue1",
-				ConditionExpression: "#attrName2 = :attrValue2",
+				UpdateExpression: "set todos.#attrKeyId.done = :attrValue",
+				ConditionExpression: "attribute_exists(todos.#attrKeyId)",
 				ExpressionAttributeNames : {
-					"#attrName1" : "todos.done",
-					"#attrName2" : "todos.id"
+					"#attrKeyId" : reqData.data.id
 				},
 				ExpressionAttributeValues: {
-					":attrValue1": true,
-					":attrValue2": reqData.data.id
-				}
+					":attrValue": reqData.data.done
+				},
+				ReturnValues: "UPDATED_NEW"
 			};
 
 			try {
@@ -115,9 +112,9 @@ async function updateItem(params, reqData) {
 					keyid: Number(params.id)
 				},
 				// UpdateExpression: "set #attrName = list_append(#attrName, :attrValue)",
-				 UpdateExpression: "set #attrName = :attrValue",
+				 UpdateExpression: "set todos.#attrKeyId = :attrValue",
 				ExpressionAttributeNames : {
-					"#attrName" : "todos"
+					"#attrKeyId" : reqData.data.todo.id
 				  },
 				ExpressionAttributeValues: {
 					":attrValue": reqData.data.todo

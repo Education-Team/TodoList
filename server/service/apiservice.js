@@ -28,12 +28,6 @@ async function insert() {
 
 // SELECT UPDATE
 async function update(params, reqData) {
-	// 일반 객체 형식을 배열 객체표현식으로 변경
-	if(reqData.type === 'C') {
-		reqData.data.todo = {
-			[reqData.data.todo.id] : { ...reqData.data.todo }
-		}
-	}
 	let data = await ApiModel.updateItem(params, reqData);
 	return data;
 }
